@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // console.log(document.cookie)
+        document.cookie = 'name=xx';
+        console.log(document.cookie)
+        let bbq = [
+            {
+                user:'xxx',
+                pw:'www'
+            },
+            {
+                user:'vvv',
+                pw:'sss'
+            }
+        ];
+        setCoolie('name','cc',{
+            setTime:{
+                data:10
+            }
+        });
+        //设置cookie
+        function setCookie(key,val,time){
+            if(time){
+                let d = new Date;
+                let t;
+                let prop;
+                for(let attr in time.setTime){
+                    t = attr[0].toUpperCase()+attr.substr(1);
+                    prop = attr;
+                };
+                d['set'+t](new Date()['get'+t]()+time.setTime[prop]);
+                document.cookie = key +'='+val +' ; expires='+ d
+            }else{
+                document.cookie = key + '=' + val;
+            }
+        };
+        //获取cookie
+        function getCookie(key){
+            let c = document.cookie;
+            let val;
+            c.split('; ').forEach((item)=>{
+                let ary = item.split('=');
+                if(ary[0] === key){
+                    val = ary[1];
+                }
+            })
+            return val;
+        };
+        //删除cookie
+        function removeCookie(key,val){
+            setCookie(key,val,{setTime:{date:-1}})
+        }
+    </script>
+</body>
+</html>
